@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css">
+    <title>Game of Life</title>
+  </head>
+  <body>
+
+    <h1>Game of Life</h1>
+
+    <label for="interval">How many milliseconds does a generation last?</label>
+    <section>
+      <input class="interval" name="interval" type="number" value="1000">
+      <button onclick="startLife()">God, start life!</button>
+    </section>
+
+    <section class="patterns">
+      <h2>Add Patterns</h2>
+      <button onclick="blinker()">Blinker</button>
+      <button onclick="cross()">Cross</button>
+      <button onclick="glider()">Glider</button>
+    </section>
+
+    <section class="container"></section>
+
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./app.js"></script>
+    <script type="text/javascript" src="./patterns.js"></script>
+  </body>
+</html>
