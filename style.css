@@ -32,6 +32,11 @@ button {
   font-weight: bold;
   padding: 0.8em 1em;
   color: #ffffff;
+  cursor: pointer;
+}
+
+button.btn-warn {
+  background-color: #e74c3c;
 }
 
 input {
@@ -60,4 +65,20 @@ input {
 
 .cell.alive {
   background-color: #2ecc71;
+}
+
+.cell.round-top-left {
+  border-top-left-radius: 50%;
+}
+
+.cell.round-bottom-left {
+  border-bottom-left-radius: 50%;
+}
+
+.cell.round-top-right {
+  border-top-right-radius: 50%;
+}
+
+.cell.round-bottom-right {
+  border-bottom-right-radius: 50%;
 }

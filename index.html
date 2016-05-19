@@ -12,16 +12,19 @@
 
     <label for="interval">How many milliseconds does a generation last?</label>
     <section>
-      <input class="interval" name="interval" type="number" value="1000">
-      <button onclick="startLife()">God, start life!</button>
+      <input class="interval" name="interval" type="number" value="700">
+      <button onclick="startLife()">Change update rate</button>
     </section>
 
     <section class="patterns">
       <h2>Add Patterns</h2>
+      <button onclick="clearLife()" class="btn-warn">Clear</button>
       <button onclick="blinker()">Blinker</button>
       <button onclick="cross()">Cross</button>
       <button onclick="glider()">Glider</button>
     </section>
+
+    <p>Or click the container to manually add a cell</p>
 
     <section class="container"></section>
 

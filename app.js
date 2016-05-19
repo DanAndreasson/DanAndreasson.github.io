@@ -7,7 +7,10 @@ var CELLWIDTH = 15;
 $(function() {
   COLUMNS = Math.floor($(window).width() / CELLWIDTH) - 5;
   ROWS = Math.floor(($(window).height() - $(".container").offset().top) / CELLWIDTH) - 1;
+
   initLife();
+  blinker();
+  startLife();
 });
 
 function resurrect(row, col) {
@@ -77,13 +80,16 @@ function countAliveNeighbours(y, x) {
 }
 
 function isAlive(y, x) {
-  return y != -1 && x!= -1 && y != ROWS && x != COLUMNS &&
-    life[y][x] && life[y][x].alive;
+  return y != -1 && x!= -1 && y != ROWS && x != COLUMNS && life[y][x].alive;
+}
+
+function isDead(y, x) {
+  return y != -1 && x!= -1 && y != ROWS && x != COLUMNS && !life[y][x].alive;
 }
 
 function liveGeneration() {
-  forEachCell(function(row, cell) {
-    var cell = life[row][cell];
+  forEachCell(function(row, col) {
+    var cell = life[row][col];
 
     if(cell.kill && cell.alive) {
       cell.elem.removeClass("alive");
@@ -96,10 +102,25 @@ function liveGeneration() {
 
     cell.kill = false;
   });
+
+  forEachCell(function(y, x) {
+    addRoundedCorners(y, x);
+  });
+}
+
+function addRoundedCorners(y, x) {
+  var elem = $(life[y][x].elem);
+
+  elem.toggleClass("round-top-left", (isDead(y-1, x-1) && isDead(y-1, x) && isDead(y , x-1)));
+  elem.toggleClass("round-top-right", (isDead(y-1, x) && isDead(y-1, x+1) && isDead(y , x+1)));
+  elem.toggleClass("round-bottom-right", (isDead(y, x+1) && isDead(y+1, x+1) && isDead(y+1 , x)));
+  elem.toggleClass("round-bottom-left", (isDead(y+1, x) && isDead(y+1, x-1) && isDead(y , x-1)));
 }
 
 function cellClick(event) {
   resurrect(event.data.row, event.data.col);
+
+  addRoundedCorners(event.data.row, event.data.col);
 }
 
 function startLife() {
